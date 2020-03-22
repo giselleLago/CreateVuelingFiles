@@ -4,22 +4,19 @@ namespace CreateVuelingFiles
 {
     public class DelegateFileEvent
     {
-        public delegate void BoilerLogHandler(string status);
-        public event BoilerLogHandler BoilerEventLog;
+        public delegate void FileLogHandler(string status);
+        public event FileLogHandler FileEventLog;
         public void LogProcess()
         {
             string remarks = "Hello World";
             File b = new File(remarks);
             b.getMessage();
-            OnBoilerEventLog(remarks);
+            OnFileEventLog(remarks);
         }
 
-        protected void OnBoilerEventLog(string message)
+        protected void OnFileEventLog(string message)
         {
-            if (BoilerEventLog != null)
-            {
-                BoilerEventLog(message);
-            }
+            FileEventLog?.Invoke(message);
         }
     }
 }
